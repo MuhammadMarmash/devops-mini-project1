@@ -18,7 +18,6 @@ module "vpc_module" {
 module "security_group_module" {
   source       = "./modules/security_group"
   vpc_id       = module.vpc_module.vpc_id
-  my_ip        = var.my_ip
   project_name = var.project_name
   environment  = var.environment
 }
