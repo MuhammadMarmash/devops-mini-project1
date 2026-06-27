@@ -28,6 +28,11 @@ jobs:
           # Exclude tests/ (assert use is expected there) and skip B104
           # (binding to 0.0.0.0 is intentional for the deployed app).
           bandit -r . -x ./tests --skip B104
+      - name: secret scanning
+        uses: gitleaks/gitleaks-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run tests with pytest
         working-directory: ./app
         run: |
